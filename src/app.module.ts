@@ -3,7 +3,10 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { MoviesModule } from './movies/movies.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Movie } from "./movies/entities/movie";
+import { Movie } from './movies/entities/movie';
+import { GenresModule } from './genres/genres.module';
+import { Genre } from './genres/entity/genre';
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
@@ -14,10 +17,12 @@ import { Movie } from "./movies/entities/movie";
       username: 'postgres',
       password: 'postgres',
       database: 'imdb',
-      entities: [Movie],
+      entities: [Movie, Genre],
       synchronize: true,
     }),
     MoviesModule,
+    GenresModule,
+    UsersModule,
   ],
   controllers: [AppController],
   providers: [AppService],
